@@ -10,22 +10,31 @@
 
 <body>
   <div class="container home-content" style="margin-bottom: 60px;">
+    <div class="row my-3 d-flex align-items-center justify-content-center">
+      <div id="first" class="col-auto fs-1">
+        Brand
+      </div>
+      <div class="col-auto fs-1 px-0">
+        &
+      </div>
+      <div id="second" class="col-auto fs-1">
+        Generator
+      </div>
+    </div>
     <form>
-      <div class="row my-3 d-flex align-items-center justify-content-center">
+      <div class="row mb-3 d-flex align-items-center justify-content-center">
         <div class="col-auto">
-          <select id="first" class="form-select form-select-lg">
-            <option value="anything" selected>Anything</option>
+          <select id="firstSelector" class="form-select form-select-lg">
             <option value="noun">Noun</option>
             <option value="adjective">Adjective</option>
             <option value="animal">Animal</option>
           </select>
         </div>
-        <div class="col-auto">
+        <div class="col-auto fs-3">
           &
         </div>
         <div class="col-auto">
-          <select id="second" class="form-select form-select-lg">
-            <option value="anything" selected>Anything</option>
+          <select id="secondSelector" class="form-select form-select-lg">
             <option value="noun">Noun</option>
             <option value="adjective">Adjective</option>
             <option value="animal">Animal</option>
@@ -34,7 +43,7 @@
       </div>
       <div class="row d-flex align-items-center justify-content-center">
         <div class="col-auto">
-          <button id="weatherSubmit" class="btn btn-lg btn-primary" type="submit" autofocus>
+          <button id="submit" class="btn btn-lg btn-primary" type="submit" autofocus>
             Generate Brand
           </button>
         </div>
