@@ -7,29 +7,18 @@ function onClick(e) {
   let secondSelectorText = secondSelector.options[secondSelector.selectedIndex].text;
 
   let firstUrl = "https://random-word-form.herokuapp.com/random/" + textToQuery(firstSelectorText)
-  fetch(firstUrl)
-    .then(function(response) {
-      if (response.status != 200) {
-        return {
-          text: "Error calling the Numbers API service: " + response.statusText
-        }
-      }
-      return response.json();
-    }).then(function(json) {
-      document.getElementById("first").textContent = json[0];
-    });
-
   let secondUrl = "https://random-word-form.herokuapp.com/random/" + textToQuery(secondSelectorText)
-  fetch(secondUrl)
-    .then(function(response) {
-      if (response.status != 200) {
-        return {
-          text: "Error calling the Numbers API service: " + response.statusText
-        }
-      }
-      return response.json();
-    }).then(function(json) {
-      document.getElementById("second").textContent = json[0];
+
+  Promise.all([
+    fetch(firstUrl),
+    fetch(secondUrl)
+    ]).then(function (responses) {
+      return Promise.all(responses.map(function (response) {
+        return response.json();
+      }));
+    }).then(function(data) {
+      document.getElementById("first").textContent = capitalize(data[0][0]);
+      document.getElementById("second").textContent = capitalize(data[1][0]);
     });
 }
 
@@ -45,6 +34,10 @@ function textToQuery(text) {
     default:
       throw text + " cannot be converted into a query!"
   }
+}
+
+function capitalize(text) {
+  return text[0].toUpperCase() + text.substring(1)
 }
 
 
